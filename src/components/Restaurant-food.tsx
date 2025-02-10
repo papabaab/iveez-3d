@@ -14,8 +14,8 @@ export function RestaurantFood({...props}) {
   return (
     <group {...props} dispose={null}>
       <group  rotation={[-Math.PI, -Math.PI / 2, 0]}>
-        <mesh geometry={nodes.Object_2.geometry} material={nodes.Object_2.material} />
-        <mesh geometry={nodes.Object_3.geometry} material={nodes.Object_3.material} />
+        <mesh castShadow geometry={nodes.Object_2.geometry} material={nodes.Object_2.material} />
+        <mesh castShadow geometry={nodes.Object_3.geometry} material={nodes.Object_3.material} />
       </group>
     </group>
   )

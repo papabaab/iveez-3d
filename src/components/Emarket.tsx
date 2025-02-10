@@ -15,19 +15,19 @@ export function Emarket({...props}) {
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 3*Math.PI/4]}>
-        <mesh geometry={nodes.Object_2.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_3.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_4.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_5.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_6.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_7.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_8.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_9.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_10.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_11.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_12.geometry} material={materials.lambert2SG} />
-        <mesh geometry={nodes.Object_13.geometry} material={materials.lambert3SG} />
-        <mesh geometry={nodes.Object_14.geometry} material={materials.lambert4SG} />
+        <mesh castShadow geometry={nodes.Object_2.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_3.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_4.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_5.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_6.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_7.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_8.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_9.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_10.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_11.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_12.geometry} material={materials.lambert2SG} />
+        <mesh castShadow geometry={nodes.Object_13.geometry} material={materials.lambert3SG} />
+        <mesh castShadow geometry={nodes.Object_14.geometry} material={materials.lambert4SG} />
       </group>
     </group>
   )

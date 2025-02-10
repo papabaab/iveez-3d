@@ -14,14 +14,14 @@ export function HotelBed({...props}) {
   return (
     <group {...props} dispose={null}>
       <group position={[-14.678, 13.933, 30.623]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} scale={0.033}>
-        <mesh geometry={nodes.queen_bed_Curtins1_0.geometry} material={materials.Curtins1} position={[928.277, -448.134, -436.417]} />
-        <mesh geometry={nodes.queen_bed4_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
-        <mesh geometry={nodes.queen_bed5_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
-        <mesh geometry={nodes.queen_bed6_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
-        <mesh geometry={nodes.queen_bed7_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
-        <mesh geometry={nodes.pCube42143476_fabric_brown_0.geometry} material={materials.fabric_brown} position={[929.095, -445.003, -395.42]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} />
-        <mesh geometry={nodes.pCube42143475_fabric_brown_0.geometry} material={materials.fabric_brown} position={[929.095, -450.143, -409.26]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} />
-        <mesh geometry={nodes.polySurface285047_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
+        <mesh castShadow geometry={nodes.queen_bed_Curtins1_0.geometry} material={materials.Curtins1} position={[928.277, -448.134, -436.417]} />
+        <mesh castShadow geometry={nodes.queen_bed4_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
+        <mesh castShadow geometry={nodes.queen_bed5_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
+        <mesh castShadow geometry={nodes.queen_bed6_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
+        <mesh castShadow geometry={nodes.queen_bed7_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
+        <mesh castShadow geometry={nodes.pCube42143476_fabric_brown_0.geometry} material={materials.fabric_brown} position={[929.095, -445.003, -395.42]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} />
+        <mesh castShadow geometry={nodes.pCube42143475_fabric_brown_0.geometry} material={materials.fabric_brown} position={[929.095, -450.143, -409.26]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} />
+        <mesh castShadow geometry={nodes.polySurface285047_fabric_brown_dark_0.geometry} material={materials.fabric_brown_dark} position={[928.277, -448.134, -436.417]} />
       </group>
     </group>
   )
