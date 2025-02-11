@@ -10,7 +10,11 @@ import { HotelBed } from './Hotel-bed';
 import { Group } from 'three';
 import gsap from 'gsap';
 
-const Scene = () => {
+interface SceneProps {
+  onScroll: (scrollOffset: number) => void;
+}
+
+const Scene = ({ onScroll }: SceneProps) => {
   const [androidHovered, setAndroidHovered] = useState(false);
   const [appleHovered, setAppleHovered] = useState(false);
   const [samsungSoloHovered, setSamsungSoloHovered] = useState(false);
@@ -24,6 +28,7 @@ const Scene = () => {
 
   useFrame((state) => {
     const scrollProgress = scroll.offset;
+    onScroll(scrollProgress);
     state.camera.position.z = 2 - (scrollProgress * 12);
   });
 
@@ -148,7 +153,7 @@ const Scene = () => {
       <group position={[0, 0, -8]}>
         <Image 
           url="/assets/imgs/restaurant-img.png"
-          position={[-1, 0, -.3]}
+          position={[-1.1, 0, -.3]}
           scale={[1.8, 1.57]}
           transparent
         />
@@ -157,12 +162,12 @@ const Scene = () => {
         <IphoneModel  
         scale={.0017} 
         rotation={[0, Math.PI, 0]} 
-        position={[.3, -.6, 0]} 
+        position={[.2, -.6, 0]} 
         onPointerEnter={() => setIphoneSoloHovered(true)}
         onPointerLeave={() => setIphoneSoloHovered(false)}
         castShadow receiveShadow />
         </group>
-        <RestaurantFood position={[.6, .84, .4]} rotation={[Math.PI/8, 0, Math.PI/8]} scale={.03} castShadow receiveShadow />
+        <RestaurantFood position={[.55, .84, .4]} rotation={[Math.PI/8, 0, Math.PI/8]} scale={.03} castShadow receiveShadow />
         <pointLight position={[-1, 1, .5]} intensity={5.5} />
         </group>
 

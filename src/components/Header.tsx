@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ isLoading }) => {
             ref={logoRef}
             src="/assets/icons/icon.png" 
             className={`rounded-full shadow-lg shadow-white transition-all duration-300 ${
-              isLoading ? 'w-40 h-40' : 'w-20 h-20'
+              isLoading ? 'w-[10vh] h-[10vh]' : 'w-20 h-20'
             }`}
             alt="iveez logo" 
             style={{

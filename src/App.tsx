@@ -44,9 +44,17 @@ const CameraController = () => {
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [didScroll, setDidScroll] = useState(false);
+
+  const handleScroll = (scrollOffset: number) => {
+    if (scrollOffset > 0 && !didScroll) {
+      setDidScroll(true);
+    } else if (scrollOffset === 0 && didScroll) {
+      setDidScroll(false);
+    }
+  };
 
   useEffect(() => {
-    // Simulate loading time (remove this in production and use actual loading state)
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
@@ -78,12 +86,12 @@ const App = () => {
             <pointLight position={[-1, 0, 1]} intensity={5.5} />
             <ambientLight intensity={.1} />
             <ScrollControls pages={3} damping={.2}>
-              <Scene />
+              <Scene onScroll={handleScroll} />
             </ScrollControls>
           </Canvas>
         )}
       </div>
-      {!isLoading && <Footer />}
+      {!isLoading && <Footer didScroll={didScroll} />}
     </>
   );
 };

@@ -1,11 +1,19 @@
 import { Facebook, Twitter, Instagram } from 'lucide-react';
 
+interface FooterProps {
+  didScroll: boolean;
+}
+
 const isMobile = window.innerWidth < 768? true : false;
-const Footer = () => {
+
+const Footer = ({ didScroll }: FooterProps) => {
+  const isFrench = navigator.language.startsWith('fr');
+  const scrollText = isFrench ? "défiler pour voir plus" : "scroll to see more";
+
   return (
    <>
-   <div className='absolute right-0 bottom-[66vh] rotate-90'>
-      <p className="text-white/50 text-xs absolute whitespace-nowrap">SCROLL TO SEE MORE</p>
+    <div className={`absolute right-0 bottom-[66vh] rotate-90 transition-opacity duration-300 ${didScroll ? 'opacity-0' : 'opacity-100'}`}>
+      <p className="text-white/50 text-xs absolute whitespace-nowrap">{scrollText}</p>
     </div>
     <footer className="fixed bottom-0 w-full bg-[#330099] py-6">
       <div className="container mx-auto px-4">
