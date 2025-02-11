@@ -77,7 +77,7 @@ const App = () => {
             />
             <pointLight position={[-1, 0, 1]} intensity={5.5} />
             <ambientLight intensity={.1} />
-            <ScrollControls pages={3} damping={1}>
+            <ScrollControls pages={3} damping={.2}>
               <Scene />
             </ScrollControls>
           </Canvas>

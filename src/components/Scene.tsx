@@ -170,7 +170,7 @@ const Scene = () => {
       <group position={[0, 0, -12]}>
         <Image 
           url="/assets/imgs/hotel-img.png"
-          position={[.8, 0, -0.2]}
+          position={[.5, 0, -0.2]}
           scale={[1.76, 1.5]}
           transparent
         />
@@ -179,10 +179,10 @@ const Scene = () => {
         onPointerEnter={() => setPixelSoloHovered(true)}
         onPointerLeave={() => setPixelSoloHovered(false)}
         scale={7} 
-        position={[-.07, -.7, 0]} 
+        position={[-.4, -.7, 0]} 
         castShadow receiveShadow />
         </group>
-        <HotelBed position={[-1, -.6, 0]} rotation={[Math.PI/10, -Math.PI/2, 0]} scale={.12} castShadow receiveShadow />
+        <HotelBed position={[-1.5, -.6, 0]} rotation={[Math.PI/10, -Math.PI/2, 0]} scale={.12} castShadow receiveShadow />
         <pointLight position={[-1, 1, .5]} intensity={5.5} />
         </group>
     </>

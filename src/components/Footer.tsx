@@ -4,7 +4,7 @@ const isMobile = window.innerWidth < 768? true : false;
 const Footer = () => {
   return (
    <>
-   <div className='absolute right-0 bottom-[50vh] rotate-90'>
+   <div className='absolute right-0 bottom-[66vh] rotate-90'>
       <p className="text-white/50 text-xs absolute whitespace-nowrap">SCROLL TO SEE MORE</p>
     </div>
     <footer className="fixed bottom-0 w-full bg-[#330099] py-6">
