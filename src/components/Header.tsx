@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { Facebook, Twitter, Instagram } from 'lucide-react';
 
 interface HeaderProps {
   isLoading: boolean;
@@ -9,6 +10,7 @@ const Header: React.FC<HeaderProps> = ({ isLoading }) => {
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
   const spinnerRef = useRef<HTMLDivElement>(null);
+  const isMobile = window.innerWidth < 768? true : false;
 
   useEffect(() => {
     if (!isLoading && headerRef.current && logoRef.current) {
@@ -43,12 +45,27 @@ const Header: React.FC<HeaderProps> = ({ isLoading }) => {
   }, [isLoading]);
 
   return (
+    <>
+    {isMobile && !isLoading &&<>
+        <div className="flex space-x-6 p-4 absolute left-0 z-50">
+                <a href="https://web.facebook.com/iveezci" target="_blank" className="text-white hover:text-white/70 transition-colors">
+                  <Facebook size={20} />
+                </a>
+                <a href="#" className="text-white hover:text-white/70 transition-colors">
+                  <Twitter size={20} />
+                </a>
+                <a href="https://www.instagram.com/iveezapp/" target="_blank" className="text-white hover:text-white/70 transition-colors">
+                  <Instagram size={20} />
+                </a>
+              </div>
+      </>}
     <header 
       ref={headerRef}
       className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
-        isLoading ? 'top-1/2 -translate-y-1/2' : 'top-6'
+        isLoading ? 'top-1/2 -translate-y-1/2' : 'top-4'
       }`}
     >
+      
       <div className="relative">
         {/* Spinner */}
         <div 
@@ -61,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ isLoading }) => {
         </div>
 
         {/* Logo container */}
-        <div className="bg-black/20 backdrop-blur-sm p-4 w-full m-auto rounded-full flex items-center justify-center">
+        <div className="bg-black/20 flex-col backdrop-blur-sm p-4 w-full m-auto rounded-full flex items-center justify-center">
           <img 
             ref={logoRef}
             src="/assets/icons/icon.png" 
@@ -73,9 +90,11 @@ const Header: React.FC<HeaderProps> = ({ isLoading }) => {
               transform: isLoading ? 'scale(1.5)' : 'scale(1)'
             }}
           />
+          {!isLoading && <img src="/assets/imgs/iveez-with-motto.png" className='mt-3 h-10 shadow-lg shadow-white rounded-full' alt="" />}
         </div>
       </div>
     </header>
+    </>
   );
 };
 

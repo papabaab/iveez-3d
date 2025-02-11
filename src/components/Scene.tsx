@@ -1,22 +1,53 @@
 import { useScroll, Image } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IphoneModel } from './IphoneModel';
 import { SamsungEdited } from './Samsung-edited';
 import { GooglePixelModel } from './Google-pixel';
 import { Emarket } from './Emarket';
 import { RestaurantFood } from './Restaurant-food';
 import { HotelBed } from './Hotel-bed';
+import { Group } from 'three';
+import gsap from 'gsap';
 
 const Scene = () => {
   const [androidHovered, setAndroidHovered] = useState(false);
   const [appleHovered, setAppleHovered] = useState(false);
+  const [samsungSoloHovered, setSamsungSoloHovered] = useState(false);
+  const [iphoneSoloHovered, setIphoneSoloHovered] = useState(false);
+  const [pixelSoloHovered, setPixelSoloHovered] = useState(false);
+
+  const iphoneSoloRef = useRef<Group>(null);
+  const samsungSoloRef = useRef<Group>(null);
+  const pixelSoloRef = useRef<Group>(null);
   const scroll = useScroll();
 
   useFrame((state) => {
     const scrollProgress = scroll.offset;
     state.camera.position.z = 2 - (scrollProgress * 12);
   });
+
+  const handleModelHover = (ref: React.RefObject<Group>, isHovered: boolean) => {
+    if (ref.current) {
+      gsap.to(ref.current.rotation, {
+        y: isHovered ? Math.PI/10 : 0,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    }
+  };
+
+  useEffect(() => {
+    handleModelHover(iphoneSoloRef, iphoneSoloHovered);
+  }, [iphoneSoloHovered]);
+
+  useEffect(() => {
+    handleModelHover(samsungSoloRef, samsungSoloHovered);
+  }, [samsungSoloHovered]);
+
+  useEffect(() => {
+    handleModelHover(pixelSoloRef, pixelSoloHovered);
+  }, [pixelSoloHovered]);
 
   return (
     <>
@@ -33,19 +64,17 @@ const Scene = () => {
       </mesh>
 
       {/* First group */}
-      <group  position={[0, 0, 0]}>
+      <group position={[0, 0, 0]}>
         <Image 
-          url="/assets/imgs/iveez-landing-en.jpeg"
+          url="/assets/imgs/iveez-landing-fr.jpeg"
           position={[-1.1, 0, 0]}
           radius={0.1}
           scale={[2, 1]}
           transparent
-          // opacity={1}
-        >
-        </Image>
+        />
         <Image 
           url="/assets/imgs/download-android.png"
-          position={[-1.5, -.6, 0]}
+          position={[-1.4, -.6, 0]}
           radius={0.01}
           scale={androidHovered ? [.6, .25] : [.5, .2]}
           transparent
@@ -55,7 +84,7 @@ const Scene = () => {
         />
         <Image 
           url="/assets/imgs/download-apple.png"
-          position={[-.7, -.6, 0]}
+          position={[-.8, -.6, 0]}
           radius={0.01}
           scale={appleHovered ? [.6, .25] : [.5, .2]}
           onClick={() => window.open('https://apps.apple.com/us/app/iveez/id1638195131?itsct=apps_box_link&itscg=30200', '_blank')}
@@ -63,14 +92,48 @@ const Scene = () => {
           onPointerOver={() => setAppleHovered(true)}
           onPointerOut={() => setAppleHovered(false)}
         />
-        <IphoneModel scale={.0017} rotation={[0, Math.PI-Math.PI/10, 0]} position={[.2, -.5, 0]} castShadow receiveShadow />
-        <GooglePixelModel scale={7} rotation={[0, -Math.PI/10, 0]} position={[.8, -.5, 0]} castShadow receiveShadow />
-        <SamsungEdited scale={.17} rotation={[0, -Math.PI/10, 0]} position={[1, -.5, -.1]} castShadow receiveShadow />
+        <group>
+          <IphoneModel 
+            scale={.0017} 
+            position={[.2, -.5, 0]} 
+            rotation={[0, Math.PI-Math.PI/10, 0]}
+            castShadow 
+            receiveShadow
+          />
+        </group>
+        <group>
+          <GooglePixelModel 
+            scale={7} 
+            position={[.8, -.5, -.2]} 
+            rotation={[0, -Math.PI/10, 0]}
+            castShadow 
+            receiveShadow
+            />
+        </group>
+        <group>
+          <SamsungEdited 
+            scale={.17} 
+            position={[1, -.5, -.4]} 
+            castShadow 
+            rotation={[0, -Math.PI/10, 0]}
+            receiveShadow
+            />
+        </group>
       </group>
 
       {/* Second group */}
       <group position={[0, 0, -4]}>
-        <IphoneModel scale={.0017} rotation={[0, Math.PI, 0]} position={[-.6, -.6, 0]} castShadow receiveShadow />
+        <group ref={samsungSoloRef}>
+          <SamsungEdited 
+            scale={.17} 
+            position={[-.6, -.5, 0]} 
+            castShadow 
+            rotation={[0,0, 0]}
+            receiveShadow 
+            onPointerEnter={() => setSamsungSoloHovered(true)}
+            onPointerLeave={() => setSamsungSoloHovered(false)}
+          />
+        </group>
         <Emarket scale={.04} rotation={[Math.PI/10, Math.PI/4, 0]} position={[-1.0, -.6, 0]} castShadow receiveShadow />
         <Image 
           url="/assets/imgs/emarket-img.png"
@@ -89,7 +152,16 @@ const Scene = () => {
           scale={[1.8, 1.57]}
           transparent
         />
-        <GooglePixelModel scale={7} position={[0.5, -.5, 0]} castShadow receiveShadow />
+
+        <group ref={iphoneSoloRef}>
+        <IphoneModel  
+        scale={.0017} 
+        rotation={[0, Math.PI, 0]} 
+        position={[.3, -.6, 0]} 
+        onPointerEnter={() => setIphoneSoloHovered(true)}
+        onPointerLeave={() => setIphoneSoloHovered(false)}
+        castShadow receiveShadow />
+        </group>
         <RestaurantFood position={[.6, .84, .4]} rotation={[Math.PI/8, 0, Math.PI/8]} scale={.03} castShadow receiveShadow />
         <pointLight position={[-1, 1, .5]} intensity={5.5} />
         </group>
@@ -102,7 +174,14 @@ const Scene = () => {
           scale={[1.76, 1.5]}
           transparent
         />
-        <SamsungEdited scale={.17} rotation={[0, 0, 0]} position={[-.4, -.5, 0]} castShadow receiveShadow />
+        <group ref={pixelSoloRef}>
+        <GooglePixelModel 
+        onPointerEnter={() => setPixelSoloHovered(true)}
+        onPointerLeave={() => setPixelSoloHovered(false)}
+        scale={7} 
+        position={[-.07, -.7, 0]} 
+        castShadow receiveShadow />
+        </group>
         <HotelBed position={[-1, -.6, 0]} rotation={[Math.PI/10, -Math.PI/2, 0]} scale={.12} castShadow receiveShadow />
         <pointLight position={[-1, 1, .5]} intensity={5.5} />
         </group>

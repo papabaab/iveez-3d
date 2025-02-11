@@ -16,6 +16,7 @@ const CameraController = () => {
   const targetPosition = useRef({ x: 0.5, y: 0.5, z: 2 }); // Default camera position
 
   useEffect(() => {
+    console.log('WINDOW WIDTH --> ', window.innerWidth)
     const updateMousePosition = (e: MouseEvent) => {
       // Convert mouse position to normalized coordinates (-1 to 1)
       mousePosition.current = {
@@ -30,8 +31,8 @@ const CameraController = () => {
 
   useFrame(() => {
     // Smoothly interpolate camera position
-    // targetPosition.current.x = 0.5 + mousePosition.current.x * 0.1;
-    // targetPosition.current.y = 0.3 + mousePosition.current.y * 0.1;
+    targetPosition.current.x = 0.5 + mousePosition.current.x * 0.1;
+    targetPosition.current.y = 0.3 + mousePosition.current.y * 0.1;
 
     camera.position.x += (targetPosition.current.x - camera.position.x) * 0.5;
     camera.position.y += (targetPosition.current.y - camera.position.y) * 0.5;
@@ -60,7 +61,7 @@ const App = () => {
         {!isLoading &&(
           <Canvas 
             shadows 
-            camera={{ position: [0.5, 0.3, 2], fov: 55 }}
+            camera={{ position: [0.5, 0.3, 2], fov: window.innerWidth < 480? 120: window.innerWidth < 768? 110: window.innerWidth < 1024? 100:55 }}
           >
             <CameraController />
             <directionalLight
@@ -82,7 +83,7 @@ const App = () => {
           </Canvas>
         )}
       </div>
-      <Footer />
+      {!isLoading && <Footer />}
     </>
   );
 };
